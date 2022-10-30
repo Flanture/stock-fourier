@@ -38,17 +38,7 @@ def fourier(ts_code,place,start_date='20060101',end_date='20211011'):
     fft_list = np.asarray(fft_df['fft'].tolist())
     for num_ in [3, 6, 9,100]:
         fft_list_m10= np.copy(fft_list); fft_list_m10[num_:-num_]=0
-        print(np.nonzero(fft_list_m10))
-        for i in range(len(fft_list_m10)):
-            if fft_list_m10[i]!=0 :
-                print(i,fft_list_m10[i])
-        print("-------")
-        fore=np.copy(fft_list[:num_-1])
-        back=np.copy(fft_list[-(num_-1):])
-        zeroes=np.zeros(len(fft_list_m10)+30)
-        final=np.concatenate((fore,zeroes,back))
-        print()
-        plt.plot(np.fft.ifft(fft_list_m10,1000), label='Fourier transform with {} components'.format(num_))
+        plt.plot(np.fft.ifft(fft_list_m10), label='Fourier transform with {} components'.format(num_))
     plt.plot(price, label='Real')
     plt.xlabel('Days')
     plt.ylabel('CNY')
